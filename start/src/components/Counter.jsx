@@ -7,7 +7,6 @@ import {
   reset,
 } from "../features/counter/counterSlice";
 
-
 const Counter = () => {
   const count = useSelector((state) => state.counter.value); // Get the value from the store, how? using useSelector, and pass the state and the value you want to get
   const dispatch = useDispatch(); // Get the dispatch function from the store
@@ -16,27 +15,26 @@ const Counter = () => {
   const resetAll = () => {
     setIncrementAmount(0);
     dispatch(reset());
-  }
+  };
 
   return (
     <div>
-      <h2>{count}</h2>
+        <h1 id="apptitle">Counter</h1>
+      <h2 id="countbox">{count}</h2>
+      <div>
+        <input
+          value={incrementAmount}
+          onChange={(e) => setIncrementAmount(e.target.value)}
+        />
+        <button onClick={() => dispatch(incrementByAmount(addVal))}>
+          Add Amount
+        </button>
+      </div>
       <div>
         <button onClick={() => dispatch(increment())}>+</button>
         <button onClick={() => dispatch(decrement())}>-</button>
+        <button onClick={resetAll}>Reset</button>
       </div>
-        <div>
-            <input
-            value={incrementAmount}
-            onChange={(e) => setIncrementAmount(e.target.value)}
-            />
-            <button onClick={() => dispatch(incrementByAmount(addVal))}>
-            Add Amount
-            </button>
-        </div>
-        <div>
-            <button onClick={resetAll}>Reset</button>
-            </div>  
     </div>
   );
 };
